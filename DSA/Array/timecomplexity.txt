@@ -1,0 +1,18 @@
+Time Complexity
+
+Big O -> represents the upper bound of running time,
+it gives worst-case scenario of an algorithm,
+it describes the maximum time an algorithm can take
+
+1) O(1), constant time -> the time taken doesnt dpepend on input size,
+    the algorithn always runs in same time.
+
+3) O(log n), logarithmic time -> this grows logarithmically as input size increases, 
+    often seen in algorithms that divide the input in half,
+    like in binary search
+
+3) O(n), linear time -> the time grows directly proportional to input size
+
+4) O(n logn), linearithmic time -> a mix of logarithmic and linear 
+
+5) O(n^2), quadratic time -> time grows proportionally to square of input size
