@@ -30,6 +30,7 @@ public:
         }
     }
 };
+
 int main() {
     int m = 3; 
     int n = 3; 
