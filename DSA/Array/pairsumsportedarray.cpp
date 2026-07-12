@@ -1,0 +1,1 @@
+//https://www.geeksforgeeks.org/problems/pair-sum-in-a-sorted-and-rotated-array/1
