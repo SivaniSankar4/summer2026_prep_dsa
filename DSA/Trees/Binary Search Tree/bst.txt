@@ -1,0 +1,4 @@
+1.In order of BST is always sorted;
+2.In a BST, values of node on the left of root is always less than value of root and 
+  value on right is always greater than value of root, this should be applicable for all the subtrees
+3. Searching time complexity:O(log n);
