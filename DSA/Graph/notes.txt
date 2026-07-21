@@ -1,0 +1,641 @@
+========================================
+GRAPH THEORY NOTES (DSA)
+========================================
+
+1. WHAT IS A GRAPH?
+------------------
+A graph is a non-linear data structure consisting of:
+• Vertices (Nodes) → Objects
+• Edges → Connections between objects
+
+Graph is represented as:
+G = (V, E)
+
+Where:
+V = Set of vertices
+E = Set of edges
+
+Example:
+    A ----- B
+    |       |
+    |       |
+    C ----- D
+
+Vertices = {A, B, C, D}
+Edges = {(A,B), (A,C), (B,D), (C,D)}
+
+========================================
+2. BASIC TERMINOLOGY
+========================================
+
+Vertex (Node)
+-------------
+A point in the graph.
+
+Example:
+A
+
+Edge
+----
+A connection between two vertices.
+
+A ----- B
+
+Adjacent Vertices
+-----------------
+Two vertices connected directly by an edge.
+
+Incident Edge
+-------------
+An edge attached to a vertex.
+
+Degree
+------
+Number of edges connected to a vertex.
+
+Example:
+      A
+     / \
+    B---C
+
+Degree(A) = 2
+Degree(B) = 2
+Degree(C) = 2
+
+Isolated Vertex
+---------------
+A vertex with degree 0.
+
+Example:
+A     B
+
+Pendant (Leaf) Vertex
+---------------------
+A vertex with degree 1.
+
+Example:
+A ----- B
+
+Degree(A) = 1
+
+========================================
+3. TYPES OF GRAPHS
+========================================
+
+Undirected Graph
+----------------
+Edges have no direction.
+
+A ----- B
+
+Directed Graph (Digraph)
+------------------------
+Edges have direction.
+
+A -----> B
+
+Weighted Graph
+--------------
+Edges contain weights.
+
+A --5-- B
+
+Used in shortest path algorithms.
+
+Unweighted Graph
+----------------
+All edges are treated equally.
+
+Simple Graph
+------------
+• No self-loop
+• No multiple edges
+
+Multigraph
+----------
+Allows multiple edges between same vertices.
+
+Pseudograph
+-----------
+Allows self-loops.
+
+Example:
+
+A
+↺
+
+Complete Graph (Kn)
+-------------------
+Every vertex is connected to every other vertex.
+
+Number of edges:
+n(n−1)/2
+
+Null Graph
+----------
+Contains vertices but no edges.
+
+Connected Graph
+---------------
+Every vertex is reachable from every other vertex.
+
+Disconnected Graph
+------------------
+Some vertices cannot be reached.
+
+Cyclic Graph
+------------
+Contains at least one cycle.
+
+Acyclic Graph
+-------------
+Contains no cycle.
+
+Directed Acyclic Graph (DAG)
+----------------------------
+Directed graph with no cycles.
+
+Applications:
+• Topological Sorting
+• Task Scheduling
+
+========================================
+4. PATHS
+========================================
+
+Path
+----
+Sequence of connected vertices.
+
+Example:
+A - B - C - D
+
+Length = Number of edges = 3
+
+Simple Path
+-----------
+No repeated vertices.
+
+Cycle
+-----
+Starts and ends at same vertex.
+
+Example:
+A - B - C - A
+
+Simple Cycle
+------------
+Only first and last vertices are repeated.
+
+========================================
+5. CONNECTED COMPONENTS
+========================================
+
+A maximal connected subgraph.
+
+Example:
+
+A - B - C
+
+D - E
+
+Connected Components = 2
+
+========================================
+6. TREE
+========================================
+
+A connected graph without cycles.
+
+Properties:
+• n vertices
+• n−1 edges
+• Exactly one path between every pair of vertices
+
+========================================
+7. FOREST
+========================================
+
+A collection of trees.
+
+========================================
+8. BIPARTITE GRAPH
+========================================
+
+Vertices are divided into two sets.
+
+Edges exist only between different sets.
+
+Complete Bipartite Graph
+------------------------
+Every vertex of first set connects to every vertex of second.
+
+Notation:
+Km,n
+
+Example:
+K3,2
+
+========================================
+9. DENSE vs SPARSE GRAPH
+========================================
+
+Dense Graph
+-----------
+Almost every pair of vertices is connected.
+
+Edges ≈ V²
+
+Sparse Graph
+------------
+Very few edges.
+
+Edges ≈ V
+
+========================================
+10. GRAPH REPRESENTATION
+========================================
+
+Adjacency Matrix
+----------------
+
+    A B C
+A   0 1 1
+B   1 0 0
+C   1 0 0
+
+Space Complexity:
+O(V²)
+
+Advantages:
+• Fast edge lookup
+• Easy implementation
+
+Disadvantages:
+• Wastes memory
+
+----------------------------------------
+
+Adjacency List
+--------------
+
+A -> B, C
+B -> A
+C -> A
+
+Space Complexity:
+O(V + E)
+
+Preferred in Competitive Programming.
+
+========================================
+11. GRAPH TRAVERSAL
+========================================
+
+Breadth First Search (BFS)
+--------------------------
+
+Uses:
+Queue
+
+Time Complexity:
+O(V + E)
+
+Applications:
+• Shortest Path (Unweighted)
+• Connected Components
+• Bipartite Graph
+• Level Order Traversal
+
+Algorithm:
+1. Push source into queue.
+2. Mark source visited.
+3. While queue is not empty:
+   • Pop front node.
+   • Visit all neighbours.
+   • Push unvisited neighbours.
+
+----------------------------------------
+
+Depth First Search (DFS)
+------------------------
+
+Uses:
+Stack or Recursion
+
+Time Complexity:
+O(V + E)
+
+Applications:
+• Cycle Detection
+• Topological Sort
+• Bridges
+• Articulation Points
+• Connected Components
+
+Algorithm:
+1. Visit node.
+2. Mark visited.
+3. DFS on all unvisited neighbours.
+
+========================================
+12. BFS vs DFS
+========================================
+
+BFS
+---
+• Queue
+• Level-wise traversal
+• Finds shortest path in unweighted graph
+• Uses more memory
+
+DFS
+---
+• Stack / Recursion
+• Depth-wise traversal
+• Doesn't guarantee shortest path
+• Uses less memory
+
+========================================
+13. IN-DEGREE
+========================================
+
+Number of incoming edges.
+
+Example:
+
+A -> B
+C -> B
+
+Indegree(B) = 2
+
+========================================
+14. OUT-DEGREE
+========================================
+
+Number of outgoing edges.
+
+Example:
+
+A -> B
+A -> C
+
+Outdegree(A) = 2
+
+========================================
+15. HANDSHAKING THEOREM
+========================================
+
+For every undirected graph:
+
+Sum of Degrees = 2 × Number of Edges
+
+Σ Degree(v) = 2E
+
+========================================
+16. GRAPH COLORING
+========================================
+
+Assign colors so adjacent vertices have different colors.
+
+Applications:
+• Timetable Scheduling
+• Register Allocation
+• Map Coloring
+
+========================================
+17. EULER PATH
+========================================
+
+Visits every edge exactly once.
+
+Conditions:
+• Graph is connected.
+• Exactly 0 or 2 odd-degree vertices.
+
+Euler Circuit
+-------------
+Visits every edge once and returns to starting vertex.
+
+Condition:
+Every vertex has even degree.
+
+========================================
+18. HAMILTONIAN PATH
+========================================
+
+Visits every vertex exactly once.
+
+Hamiltonian Cycle
+-----------------
+Visits every vertex exactly once and returns to start.
+
+Difference:
+Euler → Edge based
+Hamiltonian → Vertex based
+
+========================================
+19. TOPOLOGICAL SORT
+========================================
+
+Ordering of vertices such that
+
+For every edge:
+u → v
+
+u appears before v.
+
+Works only on DAG.
+
+Applications:
+• Course Schedule
+• Dependency Resolution
+• Build Systems
+
+========================================
+20. MINIMUM SPANNING TREE (MST)
+========================================
+
+A spanning tree having minimum total weight.
+
+Properties:
+• Covers all vertices.
+• No cycles.
+• Minimum total cost.
+
+Algorithms:
+• Prim's Algorithm
+• Kruskal's Algorithm
+
+========================================
+21. SHORTEST PATH ALGORITHMS
+========================================
+
+BFS
+---
+Used for unweighted graphs.
+
+Dijkstra
+--------
+Positive edge weights only.
+
+Uses:
+Priority Queue
+
+Bellman-Ford
+------------
+Handles negative weights.
+
+Also detects negative cycles.
+
+Floyd-Warshall
+--------------
+Shortest path between every pair of vertices.
+
+========================================
+22. CYCLE DETECTION
+========================================
+
+Undirected Graph
+----------------
+• DFS
+• Union Find (DSU)
+
+Directed Graph
+--------------
+• DFS + Recursion Stack
+• Kahn's Algorithm
+
+========================================
+23. BRIDGE
+========================================
+
+Removing an edge disconnects the graph.
+
+Example:
+
+A ---- B ---- C
+
+(B,C) is a bridge.
+
+========================================
+24. ARTICULATION POINT
+========================================
+
+Removing a vertex disconnects the graph.
+
+Example:
+
+A ---- B ---- C
+
+B is an articulation point.
+
+========================================
+25. STRONGLY CONNECTED COMPONENT (SCC)
+========================================
+
+In a directed graph,
+every vertex is reachable from every other vertex.
+
+Algorithms:
+• Kosaraju
+• Tarjan
+
+========================================
+26. DISJOINT SET UNION (DSU)
+========================================
+
+Operations:
+• Find Parent
+• Union
+
+Optimizations:
+• Path Compression
+• Union by Rank
+• Union by Size
+
+Applications:
+• Kruskal's Algorithm
+• Cycle Detection
+• Dynamic Connectivity
+
+========================================
+27. TIME COMPLEXITIES
+========================================
+
+Adjacency Matrix Edge Check : O(1)
+
+Adjacency List Edge Check   : O(Degree)
+
+BFS                         : O(V + E)
+
+DFS                         : O(V + E)
+
+Dijkstra                    : O((V + E) log V)
+
+Bellman-Ford                : O(VE)
+
+Floyd-Warshall              : O(V³)
+
+Prim's                      : O(E log V)
+
+Kruskal                     : O(E log E)
+
+Union-Find                  : Almost O(1)
+
+Topological Sort            : O(V + E)
+
+========================================
+28. IMPORTANT GRAPH PROBLEMS
+========================================
+
+• Graph Representation
+• BFS Traversal
+• DFS Traversal
+• Number of Islands
+• Flood Fill
+• Rotten Oranges
+• Clone Graph
+• Course Schedule
+• Detect Cycle
+• Bipartite Graph
+• Topological Sort
+• Shortest Path in Binary Matrix
+• Word Ladder
+• Network Delay Time
+• Minimum Spanning Tree
+• Accounts Merge (DSU)
+• Surrounded Regions
+• Pacific Atlantic Water Flow
+• Alien Dictionary
+• Bridges
+• Articulation Points
+• Strongly Connected Components (SCC)
+
+========================================
+IMPORTANT FORMULAS
+========================================
+
+Graph:
+G = (V, E)
+
+Complete Graph Edges:
+E = n(n−1)/2
+
+Tree:
+Edges = n−1
+
+Handshaking Theorem:
+Σ Degree(v) = 2E
+
+Adjacency Matrix Space:
+O(V²)
+
+Adjacency List Space:
+O(V + E)
+
+BFS:
+O(V + E)
+
+DFS:
+O(V + E)
